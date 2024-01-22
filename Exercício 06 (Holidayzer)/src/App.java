@@ -1,42 +1,47 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-public class App {
+class App {
+    public static void main(String[] args) {
+        fillHolidaysList();
+        getHolidays();
+        isDateHoliday("01-01-2024");
+        isDateHoliday("02-01-2024");
+    }
 
-    public static void main(String[] args) throws Exception {
-        Feriados feriado1 = new Feriados("Confraternização Mundial", "01-01-2024");
-        Feriados feriado2 = new Feriados("Carnaval", "12-02-2024");
-        Feriados feriado3 = new Feriados("Carnaval", "13-02-2024");
-        Feriados feriado4 = new Feriados("Sexta-feira Santa", "29-03-2024");
-        Feriados feriado5 = new Feriados("Tiradentes", "21-04-2024");
-        Feriados feriado6 = new Feriados("Dia do Trabalho", "01-05-2024");
-        Feriados feriado7 = new Feriados("Corpus Christi", "30-05-2024");
-        Feriados feriado8 = new Feriados("Independência do Brasil", "07-09-2024");
-        Feriados feriado9 = new Feriados("Nossa Senhora Aparecida", "12-10-2024");
-        Feriados feriado10 = new Feriados("Finados", "02-11-2024");
-        Feriados feriado11 = new Feriados("Proclamação da República", "15-11-2024");
-        Feriados feriado12 = new Feriados("Dia Nacional de Zumbi e da Consciência Negra", "20-11-2024");
-        Feriados feriado13 = new Feriados("Natal", "25-12-2024");
+    static List<Holiday> holidays = new ArrayList<>();
 
-
-        Scanner newBoll = new Scanner(System.in);
-        System.out.println("1 para ver os feriados ou 0 para outra opção");
-        Integer boll = newBoll.nextInt();
-
-        if(boll == 1){
-            System.out.println(feriado1.getFeriado());
-            System.out.println(feriado2.getFeriado());
-            System.out.println(feriado3.getFeriado());
-            System.out.println(feriado4.getFeriado());
-            System.out.println(feriado5.getFeriado());
-            System.out.println(feriado6.getFeriado());
-            System.out.println(feriado7.getFeriado());
-            System.out.println(feriado8.getFeriado());
-            System.out.println(feriado9.getFeriado());
-            System.out.println(feriado10.getFeriado());
-            System.out.println(feriado11.getFeriado());
-            System.out.println(feriado12.getFeriado());
-            System.out.println(feriado13.getFeriado());
-        }
-
+    public static void getHolidays() {
+        for (Holiday h : holidays) {
+            System.out.println(h.getDate() + ": " + h.getName());
         }
     }
+
+    public static void isDateHoliday(String date) {
+        for (Holiday h : holidays) {
+            if (h.getDate().equals(date)) {
+                System.out.println("Dia " + h.getDate() + " é " + h.getName() + "!");
+                return;
+            }
+        }
+        System.out.println("Dia " + date + " não é feriado");
+    }
+
+    public static void fillHolidaysList() {
+        holidays.clear();
+        holidays.add(new Holiday("Confraternização Mundial", "01-01-2024"));
+        holidays.add(new Holiday("Carnaval", "12-02-2024"));
+        holidays.add(new Holiday("Carnaval", "13-02-2024"));
+        holidays.add(new Holiday("Sexta-feira Santa", "29-03-2024"));
+        holidays.add(new Holiday("Tiradentes", "21-04-2024"));
+        holidays.add(new Holiday("Dia do Trabalho", "01-05-2024"));
+        holidays.add(new Holiday("Corpus Christi", "30-05-2024"));
+        holidays.add(new Holiday("Independência do Brasil", "07-09-2024"));
+        holidays.add(new Holiday("Nossa Senhora Aparecida", "12-10-2024"));
+        holidays.add(new Holiday("Finados", "02-11-2024"));
+        holidays.add(new Holiday("Proclamação da República", "15-11-2024"));
+        holidays.add(new Holiday("Dia Nacional de Zumbi e da Consciência Negra", "20-11-2024"));
+        holidays.add(new Holiday("Natal", "25-12-2024"));
+    }
+
+}
